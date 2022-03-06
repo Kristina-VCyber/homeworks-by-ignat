@@ -24,10 +24,7 @@ justify-content: center;
 
     /*background-color: burlywood;*/
 }
-h3 {
-    color:indigo;
 
-}
 .text {
     color: white;
     margin-left: 20px;
@@ -38,6 +35,11 @@ h3 {
     position: relative;
 
 }
+.text h3 {
+    color:indigo;
+    margin:0;
+}
+
 .text::after {
     content: "";
     position: absolute;
