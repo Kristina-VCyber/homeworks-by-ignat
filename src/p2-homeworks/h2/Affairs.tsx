@@ -1,38 +1,54 @@
 import React from 'react'
-import Affair from './Affair'
-import {AffairType} from './HW2'
+import {Affair, Filter} from './HW2'
+import {AffairItem} from "./AffairItem";
 
-type AffairsPropsType = { // need to fix any
-    data: any
-    setFilter: any
-    deleteAffairCallback: any
+type Props = { // need to fix any
+    data: Affair[]
+    setFilter:  React.Dispatch<React.SetStateAction<Filter>>
+    deleteAffairCallback: (id:number) => void
 }
 
-function Affairs(props: AffairsPropsType) {
-    const mappedAffairs = props.data.map((a: AffairType) => (
-        <Affair // should work
-            key={a._id} // кеи ОБЯЗАТЕЛЬНЫ в 99% - так что лучше их писать всегда при создании компонент в мапе
-            affair={a}
-            deleteAffairCallback={props.deleteAffairCallback}
-        />
-    ))
+export function Affairs(props: Props):JSX.Element {
 
-    const setAll = () => {} // need to fix
-    const setHigh = () => {}
-    const setMiddle = () => {}
-    const setLow = () => {}
+
+    const setMiddle = () => {
+        props.setFilter("middle")
+
+    }
+    const setLow = () => {
+        props.setFilter("low")
+
+    }
+
+    const onClickHandler = (priority:Filter) =>()=>{
+        props.setFilter(priority)
+    }
+    const defaultAffairs: Affair[] = [ // need to fix any
+        {_id: 1, name: 'React', priority: 'high'},
+        {_id: 2, name: 'anime', priority: 'low'},
+        {_id: 3, name: 'games', priority: 'low'},
+        {_id: 4, name: 'work', priority: 'high'},
+        {_id: 5, name: 'html & css', priority: 'middle'},
+    ]
 
     return (
         <div>
 
-            {mappedAffairs}
+            {defaultAffairs.map((a: Affair) => (
+                <AffairItem // should work
+                    key={a._id} // кеи ОБЯЗАТЕЛЬНЫ в 99% - так что лучше их писать всегда при создании компонент в мапе
+                    affair={a}
+                    deleteAffairCallback={props.deleteAffairCallback}
+                />
+            ))}
 
-            <button onClick={setAll}>All</button>
-            <button onClick={setHigh}>High</button>
+
+
+            <button onClick={onClickHandler("all")}>All</button>
+            <button onClick={() => props.setFilter("high")}>High</button>
             <button onClick={setMiddle}>Middle</button>
             <button onClick={setLow}>Low</button>
         </div>
     )
 }
 
-export default Affairs

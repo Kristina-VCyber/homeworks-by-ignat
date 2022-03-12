@@ -1,7 +1,7 @@
 import React from 'react'
-import {AffairType, filterAffairs} from '../HW2'
+import {Affair, filterAffairs} from '../HW2'
 
-let initialState: AffairType[]
+let initialState: Affair[]
 
 beforeEach(() => {
     initialState = [
