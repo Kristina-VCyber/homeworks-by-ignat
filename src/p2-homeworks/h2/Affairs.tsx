@@ -23,18 +23,12 @@ export function Affairs(props: Props):JSX.Element {
     const onClickHandler = (priority:Filter) =>()=>{
         props.setFilter(priority)
     }
-    const defaultAffairs: Affair[] = [ // need to fix any
-        {_id: 1, name: 'React', priority: 'high'},
-        {_id: 2, name: 'anime', priority: 'low'},
-        {_id: 3, name: 'games', priority: 'low'},
-        {_id: 4, name: 'work', priority: 'high'},
-        {_id: 5, name: 'html & css', priority: 'middle'},
-    ]
+
 
     return (
         <div>
 
-            {defaultAffairs.map((a: Affair) => (
+            {props.data.map((a: Affair) => (
                 <AffairItem // should work
                     key={a._id} // кеи ОБЯЗАТЕЛЬНЫ в 99% - так что лучше их писать всегда при создании компонент в мапе
                     affair={a}
