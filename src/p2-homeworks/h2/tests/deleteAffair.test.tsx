@@ -1,7 +1,7 @@
 import React from 'react'
-import {AffairType, deleteAffair} from '../HW2'
+import {Affair, deleteAffair} from '../HW2'
 
-let initialState: AffairType[]
+let initialState: Affair[]
 
 beforeEach(() => {
     initialState = [

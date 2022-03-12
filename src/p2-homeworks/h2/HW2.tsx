@@ -1,13 +1,14 @@
 import React, {useState} from 'react'
-import Affairs from './Affairs'
+import {Affairs} from './Affairs'
 
 // types
-export type AffairPriorityType = any // need to fix any
-export type AffairType = any // need to fix any
-export type FilterType = 'all' | AffairPriorityType
+
+export type AffairPriority = "high" | "low" | "middle";
+export type Affair = { _id: number, name: string, priority: string }
+export type Filter = 'all' | AffairPriority
 
 // constants
-const defaultAffairs: any = [ // need to fix any
+const defaultAffairs: Affair[] = [ // need to fix any
     {_id: 1, name: 'React', priority: 'high'},
     {_id: 2, name: 'anime', priority: 'low'},
     {_id: 3, name: 'games', priority: 'low'},
@@ -16,20 +17,22 @@ const defaultAffairs: any = [ // need to fix any
 ]
 
 // pure helper functions
-export const filterAffairs = (affairs: any, filter: any): any => { // need to fix any
+export const filterAffairs = (affairs: Affair[], filter: Filter): Affair[] => { // need to fix any
     if (filter === 'all') return affairs
-    else return // need to fix
+    return affairs.filter(({priority}) => priority === filter)
+
 }
-export const deleteAffair = (affairs: any, _id: any): any => { // need to fix any
-    return // need to fix
+export const deleteAffair = (affairs: Affair[], id: number): Affair[] => { // need to fix any
+    return affairs.filter(({_id}) => _id !== id)
 }
 
 function HW2() {
-    const [affairs, setAffairs] = useState<any>(defaultAffairs) // need to fix any
-    const [filter, setFilter] = useState<FilterType>('all')
+    const [affairs, setAffairs] = useState<Affair[]>(defaultAffairs) // need to fix any
+    const [filter, setFilter] = useState<Filter>('all')
 
     const filteredAffairs = filterAffairs(affairs, filter)
-    const deleteAffairCallback = (_id: any) => setAffairs(deleteAffair(affairs, _id)) // need to fix any
+
+    const deleteAffairCallback = (id: number) => setAffairs(deleteAffair(affairs, id)) // need to fix any
 
     return (
         <div>
